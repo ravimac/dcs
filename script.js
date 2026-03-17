@@ -47,7 +47,7 @@ window.addEventListener('scroll', function () {
 });
 
 // EmailJS
-emailjs.init('Qj1llmEObxmy9raDr');
+emailjs.init('A-lsqYfLLmC3O5zHb');
 
 document.getElementById('contact-form').addEventListener('submit', function (e) {
   e.preventDefault();
@@ -56,7 +56,7 @@ document.getElementById('contact-form').addEventListener('submit', function (e) 
   btn.textContent = 'Sending…';
   btn.disabled = true;
 
-  emailjs.sendForm('gmail-capitaltrends', 'template_fmrhiqc', form)
+  emailjs.sendForm('service_ifhzfef', 'template_l1ft0fp', form)
     .then(function () {
       btn.textContent = 'Sent!';
       btn.style.background = '#2ecc71';

@@ -46,14 +46,33 @@ window.addEventListener('scroll', function () {
   });
 });
 
-// Simple form submission feedback
+// EmailJS
+emailjs.init('Qj1llmEObxmy9raDr');
+
 document.getElementById('contact-form').addEventListener('submit', function (e) {
   e.preventDefault();
-  const btn = this.querySelector('button');
-  btn.textContent = 'Sent!';
-  btn.style.background = '#2ecc71';
-  setTimeout(function () {
-    btn.textContent = 'Submit';
-    btn.style.background = '';
-  }, 3000);
+  const form = this;
+  const btn = form.querySelector('button');
+  btn.textContent = 'Sending…';
+  btn.disabled = true;
+
+  emailjs.sendForm('gmail-capitaltrends', 'template_fmrhiqc', form)
+    .then(function () {
+      btn.textContent = 'Sent!';
+      btn.style.background = '#2ecc71';
+      form.reset();
+      setTimeout(function () {
+        btn.textContent = 'Submit';
+        btn.style.background = '';
+        btn.disabled = false;
+      }, 3000);
+    }, function () {
+      btn.textContent = 'Failed — try again';
+      btn.style.background = '#e74c3c';
+      btn.disabled = false;
+      setTimeout(function () {
+        btn.textContent = 'Submit';
+        btn.style.background = '';
+      }, 3000);
+    });
 });
